@@ -66,6 +66,7 @@ class vas (
   $vas_config_owner                                     = 'root',
   $vas_config_group                                     = 'root',
   $vas_config_mode                                      = '0644',
+  $vas_config_template                                  = 'vas/vas.conf.erb',
   $vas_user_override_path                               = 'UNSET',
   $vas_user_override_owner                              = 'root',
   $vas_user_override_group                              = 'root',
@@ -351,7 +352,7 @@ class vas (
     owner   => $vas_config_owner,
     group   => $vas_config_group,
     mode    => $vas_config_mode,
-    content => template('vas/vas.conf.erb'),
+    content => template($vas_config_template),
     require => Package['vasclnt','vasyp','vasgp'],
   }
 
