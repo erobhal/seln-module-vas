@@ -101,7 +101,7 @@ class vas (
   $_vas_group_override_path_default = '/etc/opt/quest/vas/group-override'
 
   # validate params
-  validate_re($vas_conf_vasd_auto_ticket_renew_interval, '^\d+$', "vas::vas_conf_vasd_auto_ticket_renew_interval must be an integer. Detected value is <${vas_conf_vasd_auto_ticket_renew_interval}>.")
+  validate_integer($vas_conf_vasd_auto_ticket_renew_interval)
   validate_re($vas_conf_vasd_update_interval, '^\d+$', "vas::vas_conf_vasd_update_interval must be an integer. Detected value is <${vas_conf_vasd_update_interval}>.")
   if $vas_conf_vasd_deluser_check_timelimit != 'UNSET' {
     validate_re($vas_conf_vasd_deluser_check_timelimit, '^\d+$', "vas::vas_conf_vasd_deluser_check_timelimit must be an integer. Detected value is <${vas_conf_vasd_deluser_check_timelimit}>.")
