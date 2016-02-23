@@ -492,7 +492,6 @@ class vas (
     # validate params
     validate_absolute_path($symlink_vastool_binary_target)
     validate_absolute_path($vastool_binary)
-
     file { 'vastool_symlink':
       ensure => link,
       path   => $symlink_vastool_binary_target,

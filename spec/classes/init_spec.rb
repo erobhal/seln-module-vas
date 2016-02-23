@@ -408,7 +408,7 @@ describe 'vas' do
       it 'should fail' do
         expect {
           should include_class('vas')
-        }.to raise_error(Puppet::Error,/vas::vas_conf_vasd_auto_ticket_renew_interval must be an integer. Detected value is <600invalid>./)
+        }.to raise_error(Puppet::Error,/validate_integer/)
       end
     end
 
@@ -1064,20 +1064,34 @@ DOMAIN\\adgroup:group::
     end
 
     context 'enabled with invalid vastool_binary' do
-      let(:params) { { :symlink_vastool_binary        => true,
+      let(:facts) { { :kernel                    => 'Linux',
+                      :osfamily                  => 'Redhat',
+                      :lsbmajdistrelease         => '6',
+                      :operatingsystemmajrelease => '6',
+                  } }
+      let(:params) { { :symlink_vastool_binary        => 'true',
                        :vastool_binary                => 'true',
                        :symlink_vastool_binary_target => '/bar' } }
       it 'should fail' do
-        expect { should }.to raise_error(Puppet::Error, /Vas module support Linux and SunOS kernels. Detected kernel is <>/)
+        expect {
+          should include_class('vas')
+        }.to raise_error(Puppet::Error, /"true" is not an absolute path/)
       end
     end
 
     context 'enabled with invalid symlink_vastool_binary_target' do
-      let(:params) { { :symlink_vastool_binary        => true,
+      let(:facts) { { :kernel                    => 'Linux',
+                      :osfamily                  => 'Redhat',
+                      :lsbmajdistrelease         => '6',
+                      :operatingsystemmajrelease => '6',
+                  } }
+      let(:params) { { :symlink_vastool_binary        => 'true',
                        :vastool_binary                => '/foo/bar',
                        :symlink_vastool_binary_target => 'undef' } }
       it 'should fail' do
-        expect { should }.to raise_error(Puppet::Error, /Vas module support Linux and SunOS kernels. Detected kernel is <>/)
+        expect {
+          should include_class('vas')
+        }.to raise_error(Puppet::Error, /"undef" is not an absolute path/)
       end
     end
   end
