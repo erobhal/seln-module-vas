@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/erobhal/seln-module-vas.svg?branch=master)](https://travis-ci.org/erobhal/seln-module-vas)
+
 # puppet-module-vas
 
 Puppet module to manage DELL Authentication Services previously known as VAS or Quest Authentication Services
