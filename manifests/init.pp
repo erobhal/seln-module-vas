@@ -449,7 +449,7 @@ class vas (
   }
 
   if $vas_conf_vasd_workstation_mode_real == true {
-    $workstation_flag = '-ws'
+    $workstation_flag = '-w'
   } else {
     $workstation_flag = ''
   }
